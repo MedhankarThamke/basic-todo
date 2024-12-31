@@ -3,8 +3,8 @@ import { useTodo } from "../contexts/TodoContext";
 
 function TodoItem({ todo }) {
   const [isTodoEditable, setisTodoEditable] = useState(false);
-  const [todoMsg, settodoMsg] = useState(todo.todo);
-  const { updateTodo, deleteTodo, toggleComplete } = useTodo;
+  const [todoMsg, setTodoMsg] = useState(todo.todo);
+  const { updateTodo, deleteTodo, toggleComplete } = useTodo();
   const editTodo = () => {
     updateTodo(todo.id, { ...todo, todo: todoMsg });
     setisTodoEditable(false);
@@ -41,7 +41,7 @@ function TodoItem({ todo }) {
 
           if (isTodoEditable) {
             editTodo();
-          } else setIsTodoEditable((prev) => !prev);
+          } else setisTodoEditable((prev) => !prev);
         }}
         disabled={todo.completed}
       >
